@@ -35,6 +35,9 @@ android {
 
 dependencies {
 
+    implementation project(path: ':entity')
+    implementation project(path: ':data')
+
     implementation supportDependencies.kotlin
     implementation supportDependencies.coreKtx
     implementation supportDependencies.koinAndroid

@@ -47,11 +47,6 @@ abstract class FragmentBaseMVVM<ViewModel : BaseViewModel, ViewBind : ViewBindin
         initViewClickListeners()
     }
 
-    @Deprecated(
-        message = "To be removed during the nearest refactoring sessions",
-        replaceWith = ReplaceWith("com.example.woven.utils.LifecycleExtesionsKt"),
-        level = DeprecationLevel.WARNING
-    )
     protected fun <T> observe(liveData: LiveData<T>, action: (T) -> Unit) = view?.run {
         if (!this@FragmentBaseMVVM.isAdded) return@run
         liveData.observe(viewLifecycleOwner, Observer { action(it ?: return@Observer) })

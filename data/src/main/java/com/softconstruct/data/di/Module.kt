@@ -6,6 +6,8 @@ import com.softconstruct.data.dataservice.RetrofitService
 import com.softconstruct.data.dataservice.appservice.PreferenceService
 import com.softconstruct.data.dataservice.appservice.PreferenceServiceImpl
 import com.softconstruct.data.dataservice.sqlservice.AppDatabase
+import com.softconstruct.data.datastore.HomeFragmentRepository
+import com.softconstruct.data.repository.HomeFragmentRepositoryImpl
 import com.softconstruct.data.utils.MAIN_URL
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -53,7 +55,7 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-
+    single<HomeFragmentRepository> { HomeFragmentRepositoryImpl(get()) }
 }
 
 val serviceModule = module {
