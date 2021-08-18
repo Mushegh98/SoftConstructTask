@@ -1,0 +1,100 @@
+ext {
+    compileSdkVersion = 30
+    buildToolsVersion = "30.0.2"
+    minSdkVersion = 21
+    targetSdkVersion = 30
+    appVersionCode = 2
+    appVersionName = "1.0"
+
+    appcompat = '1.2.0'
+    coreKtx = '1.3.2'
+    kotlinVersion = '1.4.31'
+    constraintlayout = '2.0.4'
+    materialVersion = '1.3.0'
+    junitAndroid = '1.1.2'
+    junit = '4.13.2'
+    espressoCore = '3.3.0'
+    legacySupportVersion = '1.0.0'
+
+    retrofitVersion = '2.7.1'
+    okHttpUrlConnectionVersion = '4.9.1'
+    moshiConverterVersion = '2.9.0'
+    loggingVersion = '4.3.1'
+
+    koinVersion = '2.0.1'
+    koinAndroidVesion = '2.0.1'
+
+    coroutinesVersion = '1.3.3'
+
+    fragmentVersion = '1.3.3'
+    lifecycleVersion = '2.3.1'
+    navigationVersion = '2.3.5'
+    navigationCommonVersion = '2.3.5'
+    viewpager2 = '1.0.0'
+
+    roomVersion = '2.3.0'
+
+    // Views
+    versionCardView = '1.0.0'
+    glideVersion = '4.12.0'
+    circleIndicatorVersion = '2.1.4'
+    recyclerVersion = '1.2.0'
+
+    // paging
+    pagingVersion = '3.0.0-alpha11'
+
+    // save Args
+    saveArgsVersion = '1.1.5'
+
+    // Gson
+    gsonVersion = '2.8.7'
+
+    supportDependencies = [
+            appcompat           : "androidx.appcompat:appcompat:${appcompat}",
+            kotlin              : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            coreKtx             : "androidx.core:core-ktx:${coreKtx}",
+            constraintlayout    : "androidx.constraintlayout:constraintlayout:${constraintlayout}",
+            material            : "com.google.android.material:material:${materialVersion}",
+            junitAndroid        : "androidx.test.ext:junit:${junitAndroid}",
+            junit               : "junit:junit:${junit}",
+            espressoCore        : "androidx.test.espresso:espresso-core:${espressoCore}",
+            legacySupport       : "androidx.legacy:legacy-support-v4:${legacySupportVersion}",
+
+            retrofit            : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            okHttpUrlConnection : "com.squareup.okhttp3:okhttp-urlconnection:${okHttpUrlConnectionVersion}",
+            moshiConverter      : "com.squareup.retrofit2:converter-moshi:${moshiConverterVersion}",
+            loggingInterceptor  : "com.squareup.okhttp3:logging-interceptor:${loggingVersion}",
+
+            koinAndroid         : "org.koin:koin-android:${koinAndroidVesion}",
+            koinViewModel       : "org.koin:koin-androidx-viewmodel:${koinAndroidVesion}",
+
+            coroutines          : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
+            coroutinesAndroid   : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}",
+
+            navigationFragment  : "androidx.navigation:navigation-fragment-ktx:${navigationVersion}",
+            navigationUi        : "androidx.navigation:navigation-ui-ktx:${navigationVersion}",
+            navigationCommon    : "androidx.navigation:navigation-common-ktx:${navigationCommonVersion}",
+            fragmentVersion     : "androidx.fragment:fragment-ktx:${fragmentVersion}",
+            viewPager2          : "androidx.viewpager2:viewpager2:${viewpager2}",
+
+            lifecycleCommon     : "androidx.lifecycle:lifecycle-common-java8:${lifecycleVersion}",
+            lifecycleData       : "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleVersion}",
+            lifecycleViewModel  : "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleVersion}",
+
+            roomRuntime         : "androidx.room:room-runtime:${roomVersion}",
+            roomRuntimeKtx      : "androidx.room:room-ktx:${roomVersion}",
+            roomCompiler        : "androidx.room:room-compiler:${roomVersion}",
+
+            glide               : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideOkHttp3        : "com.github.bumptech.glide:okhttp3-integration:${glideVersion}",
+            glideCompiler       : "com.github.bumptech.glide:compiler:${glideVersion}",
+            circleIndicator     : "me.relex:circleindicator:${circleIndicatorVersion}",
+            cardView            : "androidx.cardview:cardview:${versionCardView}",
+            paging              : "androidx.paging:paging-runtime:${pagingVersion}",
+            recycler            : "androidx.recyclerview:recyclerview:${recyclerVersion}",
+
+            saveArgs            : "com.android.tools:desugar_jdk_libs:${saveArgsVersion}",
+
+            gson                : "com.google.code.gson:gson:${gsonVersion}"
+    ]
+}
