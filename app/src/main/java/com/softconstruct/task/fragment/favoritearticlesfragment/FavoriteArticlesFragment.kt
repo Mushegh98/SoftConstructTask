@@ -19,7 +19,9 @@ class FavoriteArticlesFragment : Fragment() {
     val viewModel: FavoriteArticlesFragmentViewModel by viewModel()
     private val binding: FragmentFavoriteArticlesBinding by viewBinding()
     private val adapter: AllArticleFragmentAdapter by lazy { AllArticleFragmentAdapter().apply {
-
+        deleteFavoriteCallBack {
+            viewModel.deleteFavoriteArticle(it)
+        }
     } }
 
     companion object {
@@ -37,16 +39,14 @@ class FavoriteArticlesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.favoriteArticles.adapter = adapter
         observes()
     }
 
     fun observes(){
         with(viewModel){
             favoriteArticleLiveData.observe(viewLifecycleOwner){
-                with(binding){
-                    favoriteArticles.adapter = adapter
-                    adapter.submitList(it)
-                }
+                adapter.submitList(it)
             }
         }
     }

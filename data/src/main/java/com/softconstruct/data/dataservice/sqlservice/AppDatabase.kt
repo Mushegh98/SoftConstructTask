@@ -10,7 +10,7 @@ import com.softconstruct.entity.roommodel.FavoriteArticle
 
 @Database(
     entities = [Details::class, Article::class, FavoriteArticle::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 

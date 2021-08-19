@@ -9,4 +9,5 @@ interface FavoriteArticlesInteractor {
     suspend fun insertArticles(articles: List<FavoriteArticle>)
     suspend fun insertFavoriteArticle(article: ArticleUI)
     fun getArticleUIMapper(article: List<FavoriteArticle>): List<ArticleUI>
+    suspend fun deleteFavoriteArticle(article: ArticleUI)
 }

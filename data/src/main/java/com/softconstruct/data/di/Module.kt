@@ -10,7 +10,9 @@ import com.softconstruct.data.datastore.AllArticlesFragmentRepository
 import com.softconstruct.data.datastore.FavoriteArticlesRepository
 import com.softconstruct.data.repository.AllArticlesFragmentRepositoryImpl
 import com.softconstruct.data.repository.FavoriteArticlesRepositoryImpl
+import com.softconstruct.data.utils.HeaderInterceptor
 import com.softconstruct.data.utils.MAIN_URL
+import com.softconstruct.data.utils.QueryParamsInterceptor
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -37,6 +39,8 @@ val apiModule = module {
                         .addInterceptor(HttpLoggingInterceptor().apply {
                             level = HttpLoggingInterceptor.Level.HEADERS
                         })
+                        .addInterceptor(HeaderInterceptor())
+                        .addInterceptor(QueryParamsInterceptor())
                         .build()
                 )
             }
@@ -58,7 +62,7 @@ val databaseModule = module {
 }
 
 val repositoryModule = module {
-    single<AllArticlesFragmentRepository> { AllArticlesFragmentRepositoryImpl(get(), get()) }
+    single<AllArticlesFragmentRepository> { AllArticlesFragmentRepositoryImpl(get(), get(), get()) }
     single<FavoriteArticlesRepository> { FavoriteArticlesRepositoryImpl(get()) }
 }
 

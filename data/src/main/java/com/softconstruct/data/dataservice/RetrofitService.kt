@@ -10,9 +10,6 @@ interface RetrofitService {
 
     @GET("search")
     suspend fun getArticles(
-        @Query(value = "api-key") apikey: String,
         @Query("page") page: Int,
-        @Query("page-size") pageSize: Int,
-        @Query("show-fields") showFields: String
     ): Response<ArticleDTO>
 }

@@ -45,6 +45,17 @@ class AllArticlesFragmentViewModel(private val allArticlesFragmentInteractor: Al
         viewModelScope.launch(Dispatchers.IO) {
             favoriteArticlesInteractor.insertFavoriteArticle(favoriteArticle)
         }
+    }
 
+    fun deleteFavoriteArticle(favoriteArticle: ArticleUI) {
+        viewModelScope.launch {
+            favoriteArticlesInteractor.deleteFavoriteArticle(favoriteArticle)
+        }
+    }
+
+    fun deleteAllArticles() {
+        viewModelScope.launch(Dispatchers.IO) {
+            allArticlesFragmentInteractor.deleteAllArticles()
+        }
     }
 }

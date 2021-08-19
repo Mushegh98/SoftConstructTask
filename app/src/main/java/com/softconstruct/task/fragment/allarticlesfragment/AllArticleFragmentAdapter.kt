@@ -16,6 +16,7 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
 
 
     private var selectFavoriteCallBack: (item: ArticleUI) -> Unit = {}
+    private var deleteFavoriteCallBack: (item: ArticleUI) -> Unit = {}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,9 +43,19 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
                 articleTitle.text = item.webTitle
                 articleType.text = item.type
 
-                favoriteArticle.setOnClickListener {
+                if(item.isFavorite){
                     favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_24))
-                    selectFavoriteCallBack.invoke(item)
+                }else{
+                    favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_no_selected24))
+                }
+                favoriteArticle.setOnClickListener {
+                    if(item.isFavorite){
+//                        favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_no_selected24))
+                        deleteFavoriteCallBack.invoke(item.apply { isFavorite = false })
+                    }else{
+//                        favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_24))
+                        selectFavoriteCallBack.invoke(item.apply { isFavorite = true })
+                    }
                 }
             }
         }
@@ -52,6 +63,10 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
 
     fun addSelectFavoriteCallBack(callback: (item: ArticleUI) -> Unit){
         selectFavoriteCallBack = callback
+    }
+
+    fun deleteFavoriteCallBack(callback: (item: ArticleUI) -> Unit){
+        deleteFavoriteCallBack = callback
     }
 
 }

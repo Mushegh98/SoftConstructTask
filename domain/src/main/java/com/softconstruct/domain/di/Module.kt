@@ -8,5 +8,5 @@ import org.koin.dsl.module
 
 val interactorModule = module {
     single<AllArticlesFragmentInteractor> { AllArticlesFragmentUseCase(get()) }
-    single<FavoriteArticlesInteractor> { FavoriteArticlesUseCase(get()) }
+    single<FavoriteArticlesInteractor> { FavoriteArticlesUseCase(get(), get()) }
 }

@@ -12,4 +12,6 @@ internal class FavoriteArticlesRepositoryImpl(private val favoriteArticleDao: Fa
     override suspend fun insertArticles(articles: List<FavoriteArticle>) = favoriteArticleDao.saveFavoriteArticleList(articles)
 
     override suspend fun insertFavoriteArticle(article: FavoriteArticle) = favoriteArticleDao.saveFavoriteArticle(article)
+
+    override suspend fun deleteFavoriteArticle(favoriteArticle: FavoriteArticle) = favoriteArticleDao.deleteFavoriteArticle(favoriteArticle)
 }

@@ -17,6 +17,8 @@ data class Article(
     var webTitle: String?,
     @ColumnInfo(name = "type")
     var type: String?,
+    @ColumnInfo(name = "isFavorite")
+    var isFavorite: Boolean
 )
 
 

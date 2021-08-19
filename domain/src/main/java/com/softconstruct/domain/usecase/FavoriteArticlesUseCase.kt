@@ -1,14 +1,17 @@
 package com.softconstruct.domain.usecase
 
+import com.softconstruct.data.datastore.AllArticlesFragmentRepository
 import com.softconstruct.data.datastore.FavoriteArticlesRepository
 import com.softconstruct.data.utils.fromRoomModelToUI
-import com.softconstruct.data.utils.fromUIToRoomModel
+import com.softconstruct.data.utils.fromUIToRoomModelArticle
+import com.softconstruct.data.utils.fromUIToRoomModelFavoriteArticle
 import com.softconstruct.domain.interactor.FavoriteArticlesInteractor
 import com.softconstruct.entity.roommodel.FavoriteArticle
 import com.softconstruct.entity.uimodel.ArticleUI
 import kotlinx.coroutines.flow.Flow
 
-internal class FavoriteArticlesUseCase(private val favoriteArticlesRepository: FavoriteArticlesRepository): FavoriteArticlesInteractor {
+internal class FavoriteArticlesUseCase(private val favoriteArticlesRepository: FavoriteArticlesRepository,
+                                       private val allArticlesFragmentRepository: AllArticlesFragmentRepository): FavoriteArticlesInteractor {
 
     override fun getArticlesFromDB(): Flow<List<FavoriteArticle>> = favoriteArticlesRepository.getArticlesFromDB()
 
@@ -19,6 +22,12 @@ internal class FavoriteArticlesUseCase(private val favoriteArticlesRepository: F
     }
 
     override suspend fun insertFavoriteArticle(article: ArticleUI){
-        favoriteArticlesRepository.insertFavoriteArticle(article.fromUIToRoomModel())
+        favoriteArticlesRepository.insertFavoriteArticle(article.fromUIToRoomModelFavoriteArticle())
+        allArticlesFragmentRepository.updateArticle(article.fromUIToRoomModelArticle())
+    }
+
+    override suspend fun deleteFavoriteArticle(article: ArticleUI){
+        favoriteArticlesRepository.deleteFavoriteArticle(article.fromUIToRoomModelFavoriteArticle())
+        allArticlesFragmentRepository.updateArticle(article.fromUIToRoomModelArticle())
     }
 }

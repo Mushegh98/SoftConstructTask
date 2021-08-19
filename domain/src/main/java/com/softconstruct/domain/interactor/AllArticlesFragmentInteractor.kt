@@ -8,4 +8,5 @@ interface AllArticlesFragmentInteractor {
     suspend fun getArticles(): com.softconstruct.entity.Result<Unit>
     fun getArticlesFromDB(): Flow<List<Article>>
     fun getArticleUIMapper(article: List<Article>): List<ArticleUI>
+    suspend fun deleteAllArticles()
 }

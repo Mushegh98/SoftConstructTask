@@ -1,9 +1,6 @@
 package com.softconstruct.data.dataservice.sqlservice.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.softconstruct.entity.roommodel.Article
 import com.softconstruct.entity.roommodel.Details
 import kotlinx.coroutines.flow.Flow
@@ -19,5 +16,11 @@ interface ArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveArticleList(articles: List<Article>)
+
+    @Query("DELETE FROM Article")
+    suspend fun deleteAllArticles()
+
+    @Query("UPDATE Article SET isFavorite = :isFavorite WHERE id = :id")
+    suspend fun updateArticle(isFavorite: Boolean, id: String)
 
 }

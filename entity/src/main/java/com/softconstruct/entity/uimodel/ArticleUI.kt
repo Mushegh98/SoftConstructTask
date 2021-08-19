@@ -8,4 +8,5 @@ data class ArticleUI(
     var fields: Fields?,
     var webTitle: String?,
     var type: String?,
+    var isFavorite: Boolean
 )
