@@ -50,4 +50,11 @@ dependencies {
     // Koin DI
     implementation supportDependencies.koinAndroid
     implementation supportDependencies.koinViewModel
+
+    // Coroutines
+    implementation supportDependencies.coroutines
+
+    // Room
+    implementation supportDependencies.roomRuntime
+    implementation supportDependencies.roomRuntimeKtx
 }

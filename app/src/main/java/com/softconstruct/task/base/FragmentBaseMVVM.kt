@@ -1,5 +1,6 @@
 package com.softconstruct.task.base
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,7 +62,7 @@ abstract class FragmentBaseMVVM<ViewModel : BaseViewModel, ViewBind : ViewBindin
     }
 
     protected fun navigateBackStack() {
-        navController.popBackStack()
+        if (!navController.popBackStack()) activity?.finish()
     }
 
     protected fun navigateFragment(
