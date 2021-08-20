@@ -70,7 +70,6 @@ class AllArticlesFragment : Fragment() {
             }
             allArticleLiveData.observe(viewLifecycleOwner){
                 adapter.submitList(it.toMutableList())
-                adapter.notifyDataSetChanged()
             }
         }
 

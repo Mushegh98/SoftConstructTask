@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
-import com.softconstruct.entity.responsemodel.Result
 import com.softconstruct.entity.uimodel.ArticleUI
 import com.softconstruct.task.R
 import com.softconstruct.task.base.adapter.BaseAdapter
 import com.softconstruct.task.base.adapter.BaseViewHolder
 import com.softconstruct.task.databinding.ArticlesItemBinding
 
-class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, AllArticleFragmentAdapter.AllArticleViewHolder>(QuestionsDiffCallback()) {
+class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, AllArticleFragmentAdapter.AllArticleViewHolder>(ArticlesDiffCallback()) {
 
 
     private var selectFavoriteCallBack: (item: ArticleUI) -> Unit = {}
@@ -51,10 +50,10 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
                 favoriteArticle.setOnClickListener {
                     if(item.isFavorite){
 //                        favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_no_selected24))
-                        deleteFavoriteCallBack.invoke(item.apply { isFavorite = false })
+                        deleteFavoriteCallBack.invoke(item)
                     }else{
 //                        favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_24))
-                        selectFavoriteCallBack.invoke(item.apply { isFavorite = true })
+                        selectFavoriteCallBack.invoke(item)
                     }
                 }
             }
@@ -71,7 +70,7 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
 
 }
 
-class QuestionsDiffCallback : DiffUtil.ItemCallback<ArticleUI>() {
+class ArticlesDiffCallback : DiffUtil.ItemCallback<ArticleUI>() {
     override fun areItemsTheSame(oldItem: ArticleUI, newItem: ArticleUI): Boolean =
         oldItem.id == newItem.id
 

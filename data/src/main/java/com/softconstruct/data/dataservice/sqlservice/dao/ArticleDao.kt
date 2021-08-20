@@ -20,7 +20,7 @@ interface ArticleDao {
     @Query("DELETE FROM Article")
     suspend fun deleteAllArticles()
 
-    @Query("UPDATE Article SET isFavorite = :isFavorite WHERE id = :id")
+    @Query("UPDATE Article SET isFavorite = not :isFavorite WHERE id = :id")
     suspend fun updateArticle(isFavorite: Boolean, id: String)
 
 }
