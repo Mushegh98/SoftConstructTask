@@ -1,7 +1,10 @@
 package com.softconstruct.task.fragment.homefragment
 
 import android.util.Log
+import androidx.core.os.bundleOf
 import com.google.android.material.tabs.TabLayoutMediator
+import com.softconstruct.entity.uimodel.ArticleUI
+import com.softconstruct.task.R
 import com.softconstruct.task.base.FragmentBaseMVVM
 import com.softconstruct.task.base.utils.viewBinding
 import com.softconstruct.task.databinding.FragmentHomeBinding
@@ -17,12 +20,15 @@ class HomeFragment : FragmentBaseMVVM<HomeFragmentViewModel,FragmentHomeBinding>
     companion object {
         @JvmStatic
         fun newInstance() = HomeFragment()
+        var goToDetail = {_:ArticleUI-> }
     }
 
     override fun initView() {
 //        viewModel.getArticles()
-
-        fragmentAdapter = activity?.supportFragmentManager?.let { FragmentAdapter(it, lifecycle) }
+        goToDetail = {
+            navigateFragment(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it))
+        }
+        fragmentAdapter = FragmentAdapter(childFragmentManager, lifecycle)
         with(binding){
             viewPager.adapter = fragmentAdapter
             val tabTitlesList = mutableListOf<String>().apply {

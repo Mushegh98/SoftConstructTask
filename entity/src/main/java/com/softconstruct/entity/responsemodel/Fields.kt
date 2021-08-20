@@ -5,5 +5,7 @@ import com.squareup.moshi.Json
 
 data class Fields(
     @Json(name = "thumbnail")
-    var thumbnail: String?
+    var thumbnail: String?,
+    @Json(name = "body")
+    var body: String?
 )

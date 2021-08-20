@@ -9,4 +9,4 @@ const val PAGE_SIZE_KEY = "page-size"
 const val PAGE_SIZE_VALUE = 20
 
 const val SHOW_FIELDS_KEY = "show-fields"
-const val SHOW_FIELDS_VALUE = "thumbnail"
+const val SHOW_FIELDS_VALUE = "thumbnail,body"

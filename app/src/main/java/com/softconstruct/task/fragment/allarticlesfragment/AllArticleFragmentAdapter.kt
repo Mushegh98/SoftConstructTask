@@ -16,6 +16,7 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
 
     private var selectFavoriteCallBack: (item: ArticleUI) -> Unit = {}
     private var deleteFavoriteCallBack: (item: ArticleUI) -> Unit = {}
+    private var onItemClickCallBack: (item: ArticleUI) -> Unit = {}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -58,6 +59,10 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
                 }
             }
         }
+
+        override fun onItemClick(item: ArticleUI) {
+            onItemClickCallBack.invoke(item)
+        }
     }
 
     fun addSelectFavoriteCallBack(callback: (item: ArticleUI) -> Unit){
@@ -68,6 +73,9 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
         deleteFavoriteCallBack = callback
     }
 
+    fun addOnItemClickCallBack(callback: (item: ArticleUI) -> Unit){
+        onItemClickCallBack = callback
+    }
 }
 
 class ArticlesDiffCallback : DiffUtil.ItemCallback<ArticleUI>() {

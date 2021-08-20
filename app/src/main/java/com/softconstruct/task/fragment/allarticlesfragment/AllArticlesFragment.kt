@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softconstruct.task.base.utils.hasNetwork
 import com.softconstruct.task.base.utils.viewBinding
 import com.softconstruct.task.databinding.FragmentAllArticlesBinding
+import com.softconstruct.task.fragment.homefragment.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -22,6 +23,9 @@ class AllArticlesFragment : Fragment() {
         }
         deleteFavoriteCallBack {
             viewModel.deleteFavoriteArticle(it)
+        }
+        addOnItemClickCallBack {
+            HomeFragment.goToDetail.invoke(it)
         }
     } }
 
