@@ -11,6 +11,7 @@ import com.softconstruct.task.base.FragmentBaseMVVM
 import com.softconstruct.task.base.utils.viewBinding
 import com.softconstruct.task.databinding.FragmentFavoriteArticlesBinding
 import com.softconstruct.task.fragment.allarticlesfragment.AllArticleFragmentAdapter
+import com.softconstruct.task.fragment.homefragment.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -21,6 +22,9 @@ class FavoriteArticlesFragment : Fragment() {
     private val adapter: AllArticleFragmentAdapter by lazy { AllArticleFragmentAdapter().apply {
         deleteFavoriteCallBack {
             viewModel.deleteFavoriteArticle(it)
+        }
+        addOnItemClickCallBack {
+            HomeFragment.goToDetail.invoke(it)
         }
     } }
 
