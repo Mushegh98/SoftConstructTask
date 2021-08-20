@@ -46,4 +46,10 @@ class DetailsFragment : FragmentBaseMVVM<DetailsFragmentViewModel,FragmentDetail
     override fun navigateUp() {
         navigateBackStack()
     }
+
+    override fun initViewClickListeners() {
+        binding.backBtn.setOnClickListener {
+            navigateUp()
+        }
+    }
 }

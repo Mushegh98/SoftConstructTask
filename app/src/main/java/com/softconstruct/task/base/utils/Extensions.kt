@@ -4,6 +4,11 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.text.SpannableStringBuilder
+import android.text.Spanned
+import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
+import com.softconstruct.task.R
 
 fun Context.hasNetwork(): Boolean {
     var isConnected = false
@@ -33,4 +38,13 @@ fun Context.hasNetwork(): Boolean {
         }
     }
     return isConnected
+}
+
+fun TextView.setSoftConstructFonts() {
+    val font = context?.let { ResourcesCompat.getFont(it, R.font.roboto_black) }
+    val font2 = context?.let { ResourcesCompat.getFont(it, R.font.roboto_regular) }
+    val spannableString = SpannableStringBuilder(context?.getString(R.string.softconstruct))
+    spannableString.setSpan(font?.let { CustomTypefaceSpan("", it) }, 0, 4, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
+    spannableString.setSpan(font2?.let { CustomTypefaceSpan("", it) }, 4, 12, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
+    text = spannableString
 }

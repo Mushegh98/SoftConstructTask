@@ -73,6 +73,7 @@ class AllArticlesFragment : Fragment() {
         binding.allArticles.adapter = adapter
 
         observer()
+        binding.progressBarCenter.visibility = View.VISIBLE
         viewModel.getArticles()
         binding.allArticles.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 //            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -109,9 +110,11 @@ class AllArticlesFragment : Fragment() {
             getArticlesError.observe(viewLifecycleOwner){
                 isLoading = false
                 binding.progressBar.visibility = View.GONE
+                binding.progressBarCenter.visibility = View.GONE
             }
             allArticleLiveData.observe(viewLifecycleOwner){
                 binding.progressBar.visibility = View.GONE
+                binding.progressBarCenter.visibility = View.GONE
                 isLoading = false
                 adapter.submitList(it.toMutableList())
             }

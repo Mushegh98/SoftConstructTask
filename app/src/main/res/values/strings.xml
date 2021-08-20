@@ -2,4 +2,6 @@
     <string name="app_name">SoftConstructTask</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="softconstruct">SOFTCONSTRUCT</string>
+    <string name="detail">DETAIL</string>
 </resources>

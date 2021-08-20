@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.softconstruct.entity.uimodel.ArticleUI
 import com.softconstruct.task.R
 import com.softconstruct.task.base.adapter.BaseAdapter
@@ -39,14 +41,15 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
             with(binding) {
                 Glide.with(articleImage.context)
                     .load(item.fields?.thumbnail)
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
                     .into(binding.articleImage)
                 articleTitle.text = item.webTitle
-                articleType.text = item.type
+                articleType.text = "#" + item.type
 
                 if(item.isFavorite){
-                    favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_24))
+                    favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.heart_selected))
                 }else{
-                    favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_no_selected24))
+                    favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.heart_no_selected))
                 }
                 favoriteArticle.setOnClickListener {
                     if(item.isFavorite){

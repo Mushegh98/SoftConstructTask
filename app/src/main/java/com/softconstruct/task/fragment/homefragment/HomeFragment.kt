@@ -6,6 +6,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.softconstruct.entity.uimodel.ArticleUI
 import com.softconstruct.task.R
 import com.softconstruct.task.base.FragmentBaseMVVM
+import com.softconstruct.task.base.utils.setSoftConstructFonts
 import com.softconstruct.task.base.utils.viewBinding
 import com.softconstruct.task.databinding.FragmentHomeBinding
 import com.softconstruct.task.fragment.adapter.FragmentAdapter
@@ -24,6 +25,7 @@ class HomeFragment : FragmentBaseMVVM<HomeFragmentViewModel,FragmentHomeBinding>
     }
 
     override fun initView() {
+        binding.softConstructHeader.setSoftConstructFonts()
 //        viewModel.getArticles()
         goToDetail = {
             navigateFragment(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(it))
@@ -70,6 +72,6 @@ class HomeFragment : FragmentBaseMVVM<HomeFragmentViewModel,FragmentHomeBinding>
     }
 
     override fun navigateUp() {
-        navigateBackStack()
+        activity?.finish()
     }
 }

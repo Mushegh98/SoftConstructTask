@@ -62,7 +62,7 @@ abstract class FragmentBaseMVVM<ViewModel : BaseViewModel, ViewBind : ViewBindin
     }
 
     protected fun navigateBackStack() {
-        if (!navController.popBackStack()) activity?.finish()
+        navController.popBackStack()
     }
 
     protected fun navigateFragment(
