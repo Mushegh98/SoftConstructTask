@@ -13,8 +13,10 @@ import com.softconstruct.task.base.adapter.BaseAdapter
 import com.softconstruct.task.base.adapter.BaseViewHolder
 import com.softconstruct.task.databinding.ArticlesItemBinding
 
-class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, AllArticleFragmentAdapter.AllArticleViewHolder>(ArticlesDiffCallback()) {
-
+class AllArticleFragmentAdapter :
+    BaseAdapter<ArticlesItemBinding, ArticleUI, AllArticleFragmentAdapter.AllArticleViewHolder>(
+        ArticlesDiffCallback()
+    ) {
 
     private var selectFavoriteCallBack: (item: ArticleUI) -> Unit = {}
     private var deleteFavoriteCallBack: (item: ArticleUI) -> Unit = {}
@@ -36,27 +38,29 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
     inner class AllArticleViewHolder(private val binding: ArticlesItemBinding) :
         BaseViewHolder<ArticleUI, ArticlesItemBinding>(binding) {
 
-        @SuppressLint("UseCompatLoadingForDrawables")
+        @SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
         override fun bind(item: ArticleUI) {
             with(binding) {
+
                 Glide.with(articleImage.context)
                     .load(item.fields?.thumbnail)
+                    .placeholder(articleImage.context.getDrawable(R.drawable.softconstruct_logo))
                     .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
                     .into(binding.articleImage)
+
                 articleTitle.text = item.webTitle
                 articleType.text = "#" + item.type
 
-                if(item.isFavorite){
+                if (item.isFavorite) {
                     favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.heart_selected))
-                }else{
+                } else {
                     favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.heart_no_selected))
                 }
+
                 favoriteArticle.setOnClickListener {
-                    if(item.isFavorite){
-//                        favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_no_selected24))
+                    if (item.isFavorite) {
                         deleteFavoriteCallBack.invoke(item)
-                    }else{
-//                        favoriteArticle.setImageDrawable(articleImage.context.getDrawable(R.drawable.ic_baseline_favorite_24))
+                    } else {
                         selectFavoriteCallBack.invoke(item)
                     }
                 }
@@ -68,15 +72,15 @@ class AllArticleFragmentAdapter : BaseAdapter<ArticlesItemBinding, ArticleUI, Al
         }
     }
 
-    fun addSelectFavoriteCallBack(callback: (item: ArticleUI) -> Unit){
+    fun addSelectFavoriteCallBack(callback: (item: ArticleUI) -> Unit) {
         selectFavoriteCallBack = callback
     }
 
-    fun deleteFavoriteCallBack(callback: (item: ArticleUI) -> Unit){
+    fun deleteFavoriteCallBack(callback: (item: ArticleUI) -> Unit) {
         deleteFavoriteCallBack = callback
     }
 
-    fun addOnItemClickCallBack(callback: (item: ArticleUI) -> Unit){
+    fun addOnItemClickCallBack(callback: (item: ArticleUI) -> Unit) {
         onItemClickCallBack = callback
     }
 }

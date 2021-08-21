@@ -19,14 +19,16 @@ class FavoriteArticlesFragment : Fragment() {
 
     val viewModel: FavoriteArticlesFragmentViewModel by viewModel()
     private val binding: FragmentFavoriteArticlesBinding by viewBinding()
-    private val adapter: AllArticleFragmentAdapter by lazy { AllArticleFragmentAdapter().apply {
-        deleteFavoriteCallBack {
-            viewModel.deleteFavoriteArticle(it)
+    private val adapter: AllArticleFragmentAdapter by lazy {
+        AllArticleFragmentAdapter().apply {
+            deleteFavoriteCallBack {
+                viewModel.deleteFavoriteArticle(it)
+            }
+            addOnItemClickCallBack {
+                HomeFragment.goToDetail.invoke(it)
+            }
         }
-        addOnItemClickCallBack {
-            HomeFragment.goToDetail.invoke(it)
-        }
-    } }
+    }
 
     companion object {
         @JvmStatic
@@ -47,10 +49,10 @@ class FavoriteArticlesFragment : Fragment() {
         observes()
     }
 
-    fun observes(){
-        with(viewModel){
-            favoriteArticleLiveData.observe(viewLifecycleOwner){
-                adapter.submitList(it)
+    private fun observes() {
+        with(viewModel) {
+            favoriteArticleLiveData.observe(viewLifecycleOwner) {
+                adapter.submitList(it.toMutableList())
             }
         }
     }

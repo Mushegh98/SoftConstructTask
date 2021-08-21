@@ -10,26 +10,26 @@
         android:id="@+id/softConstructHeader"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:text="@string/softconstruct"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:gravity="center"
         android:background="@color/softconstruct_bg"
+        android:gravity="center"
+        android:text="@string/softconstruct"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabTextColor="@color/white"
-        app:tabIndicatorColor="@color/white"
         android:background="@color/softconstruct_bg"
-        app:layout_constraintTop_toBottomOf="@+id/softConstructHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/softConstructHeader"
+        app:tabIndicatorColor="@color/white"
+        app:tabTextColor="@color/white" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dp_0"
         android:layout_below="@+id/tabLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout" />

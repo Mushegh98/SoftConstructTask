@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.softconstruct.task.base.utils.hasNetwork
 
-class NetworkChangeReceiver: BroadcastReceiver() {
+class NetworkChangeReceiver : BroadcastReceiver() {
 
     private var isOnlineCallBack: (isOnline: Boolean) -> Unit = {}
 

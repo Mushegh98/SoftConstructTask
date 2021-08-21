@@ -9,6 +9,7 @@ inline fun <reified T : ViewBinding> ComponentActivity.viewBinding(
 ): ViewBindingProperty<ComponentActivity, T> {
     return viewBinding(ActivityInflateViewBinder(T::class.java)::bind)
 }
+
 private class ActivityViewBindingProperty<A : ComponentActivity, T : ViewBinding>(
     viewBinder: (A) -> T
 ) : ViewBindingProperty<A, T>(viewBinder) {

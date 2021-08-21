@@ -10,10 +10,10 @@ import com.softconstruct.task.R
 import com.softconstruct.task.base.utils.setSoftConstructFonts
 
 
-class SplashFragment : FragmentBaseMVVM<SplashFragmentViewModel,FragmentSplashBinding>() {
+class SplashFragment : FragmentBaseMVVM<SplashFragmentViewModel, FragmentSplashBinding>() {
 
-   override val viewModel: SplashFragmentViewModel by viewModel()
-   override val binding: FragmentSplashBinding by viewBinding()
+    override val viewModel: SplashFragmentViewModel by viewModel()
+    override val binding: FragmentSplashBinding by viewBinding()
 
     companion object {
         @JvmStatic
@@ -25,7 +25,7 @@ class SplashFragment : FragmentBaseMVVM<SplashFragmentViewModel,FragmentSplashBi
 
         Handler(Looper.getMainLooper()).postDelayed({
             navigateFragment(R.id.action_splashFragment_to_homeFragment)
-        },2000)
+        }, 2000)
     }
 
     override fun navigateUp() {

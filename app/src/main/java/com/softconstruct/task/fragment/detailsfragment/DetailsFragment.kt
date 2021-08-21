@@ -1,5 +1,6 @@
 package com.softconstruct.task.fragment.detailsfragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Html
 import androidx.fragment.app.Fragment
@@ -16,30 +17,37 @@ import com.softconstruct.task.databinding.FragmentDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class DetailsFragment : FragmentBaseMVVM<DetailsFragmentViewModel,FragmentDetailsBinding>() {
+class DetailsFragment : FragmentBaseMVVM<DetailsFragmentViewModel, FragmentDetailsBinding>() {
 
     override val viewModel: DetailsFragmentViewModel by viewModel()
     override val binding: FragmentDetailsBinding by viewBinding()
 
     private val args: DetailsFragmentArgs by navArgs()
 
-       companion object {
-           @JvmStatic
-           fun newInstance() = DetailsFragment()
-       }
+    companion object {
+        @JvmStatic
+        fun newInstance() = DetailsFragment()
+    }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun initView() {
         val article = args.article
-        with(binding){
+        with(binding) {
             context?.let {
                 Glide.with(it)
                     .load(article?.fields?.thumbnail)
+                    .placeholder(context?.getDrawable(R.drawable.softconstruct_logo))
                     .into(detailImage)
             }
 
             detailTitle.text = article?.webTitle
             detailBody.text =
-                article?.fields?.body?.let { HtmlCompat.fromHtml(it, HtmlCompat.FROM_HTML_MODE_LEGACY) };
+                article?.fields?.body?.let {
+                    HtmlCompat.fromHtml(
+                        it,
+                        HtmlCompat.FROM_HTML_MODE_LEGACY
+                    )
+                };
         }
     }
 

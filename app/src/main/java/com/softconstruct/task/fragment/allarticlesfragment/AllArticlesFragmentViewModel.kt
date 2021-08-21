@@ -15,15 +15,19 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AllArticlesFragmentViewModel(private val allArticlesFragmentInteractor: AllArticlesFragmentInteractor,
-                                   private val favoriteArticlesInteractor: FavoriteArticlesInteractor): BaseViewModel() {
+class AllArticlesFragmentViewModel(
+    private val allArticlesFragmentInteractor: AllArticlesFragmentInteractor,
+    private val favoriteArticlesInteractor: FavoriteArticlesInteractor
+) : BaseViewModel() {
 
     private val _getArticlesSuccess by lazy { SingleLiveEvent<Unit>() }
     val getArticlesSuccess: LiveData<Unit> get() = _getArticlesSuccess
     private val _getArticlesError by lazy { SingleLiveEvent<String>() }
     val getArticlesError: LiveData<String> get() = _getArticlesError
 
-    val allArticleLiveData: LiveData<List<ArticleUI>> = allArticlesFragmentInteractor.getArticlesFromDB().map { allArticlesFragmentInteractor.getArticleUIMapper(it) }.asLiveData()
+    val allArticleLiveData: LiveData<List<ArticleUI>> =
+        allArticlesFragmentInteractor.getArticlesFromDB()
+            .map { allArticlesFragmentInteractor.getArticleUIMapper(it) }.asLiveData()
 
     fun getArticles() {
         viewModelScope.launch(Dispatchers.IO) {

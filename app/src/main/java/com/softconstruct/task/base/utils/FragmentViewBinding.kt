@@ -16,6 +16,7 @@ private class FragmentViewBindingProperty<F : Fragment, T : ViewBinding>(
 ) : ViewBindingProperty<F, T>(viewBinder) {
     override fun getLifecycleOwner(thisRef: F) = thisRef.viewLifecycleOwner
 }
+
 class FragmentInflateViewBinder<T : ViewBinding>(
     private val viewBindingClass: Class<T>
 ) {

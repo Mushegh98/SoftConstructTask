@@ -22,7 +22,7 @@ data class Article(
 )
 
 
-class  FieldsTypeConverter{
+class FieldsTypeConverter {
     @TypeConverter
     fun fromStringFieldsData(json: String): Fields? {
         val jsonAdapter: JsonAdapter<Fields> = Moshi.Builder().build().adapter(Fields::class.java)

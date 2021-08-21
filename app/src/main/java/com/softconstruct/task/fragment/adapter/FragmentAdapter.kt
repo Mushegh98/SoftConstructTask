@@ -7,22 +7,28 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.softconstruct.task.fragment.allarticlesfragment.AllArticlesFragment
 import com.softconstruct.task.fragment.favoritearticlesfragment.FavoriteArticlesFragment
 
-class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle): FragmentStateAdapter(fragmentManager, lifecycle) {
+class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+    FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
         return 2
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when(position){
-            0-> {
+        return when (position) {
+            ALL_ARTICLES_FRAGMENT -> {
                 AllArticlesFragment.newInstance()
             }
-            1-> {
+            FAVORITE_ARTICLES_FRAGMENT -> {
                 FavoriteArticlesFragment.newInstance()
             }
-            else-> {
+            else -> {
                 AllArticlesFragment.newInstance()
             }
         }
+    }
+
+    companion object {
+        const val ALL_ARTICLES_FRAGMENT = 0
+        const val FAVORITE_ARTICLES_FRAGMENT = 1
     }
 }

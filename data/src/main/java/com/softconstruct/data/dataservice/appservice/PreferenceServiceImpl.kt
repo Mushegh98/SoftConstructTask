@@ -4,7 +4,7 @@ import android.content.Context
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 
-class PreferenceServiceImpl(private val context: Context): PreferenceService {
+class PreferenceServiceImpl(private val context: Context) : PreferenceService {
 
     val sharedPreferences = context.getSharedPreferences("userData", Context.MODE_PRIVATE)
 

@@ -20,6 +20,11 @@ private const val HTTP_CODE_OK = 200
 fun <R> analyzeResponse(response: Response<R>): com.softconstruct.entity.Result<R> {
     return when (response.code()) {
         HTTP_CODE_OK -> com.softconstruct.entity.Result.Success(response.body())
-        else -> com.softconstruct.entity.Result.Error(GuardianTaskException(response.code(), response.message()))
+        else -> com.softconstruct.entity.Result.Error(
+            GuardianTaskException(
+                response.code(),
+                response.message()
+            )
+        )
     }
 }
