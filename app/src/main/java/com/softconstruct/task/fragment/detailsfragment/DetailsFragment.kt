@@ -32,6 +32,7 @@ class DetailsFragment : FragmentBaseMVVM<DetailsFragmentViewModel, FragmentDetai
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun initView() {
         val article = args.article
+
         with(binding) {
             context?.let {
                 Glide.with(it)
@@ -47,7 +48,7 @@ class DetailsFragment : FragmentBaseMVVM<DetailsFragmentViewModel, FragmentDetai
                         it,
                         HtmlCompat.FROM_HTML_MODE_LEGACY
                     )
-                };
+                }
         }
     }
 

@@ -1,31 +1,20 @@
 package com.softconstruct.task.fragment.allarticlesfragment
 
-import android.content.Context
 import android.content.IntentFilter
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.internal.runner.junit4.statement.UiThreadStatement.runOnUiThread
-import com.softconstruct.task.R
 import com.softconstruct.task.base.utils.gone
-import com.softconstruct.task.base.utils.hasNetwork
 import com.softconstruct.task.base.utils.viewBinding
 import com.softconstruct.task.base.utils.visible
 import com.softconstruct.task.broadcast.NetworkChangeReceiver
 import com.softconstruct.task.databinding.FragmentAllArticlesBinding
 import com.softconstruct.task.fragment.homefragment.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
-import kotlin.concurrent.schedule
-
 
 class AllArticlesFragment : Fragment() {
 
@@ -49,14 +38,6 @@ class AllArticlesFragment : Fragment() {
         }
     }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (context?.hasNetwork() == true) {
-            viewModel.deleteAllArticles()
-        }
-    }
-
     override fun onStart() {
         super.onStart()
         val filter = IntentFilter()
@@ -73,8 +54,8 @@ class AllArticlesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         networkReceiver.apply {
-            addIsOnLineCallBack { connected ->
-                if (connected) {
+            addIsOnLineCallBack { isConnected ->
+                if (isConnected) {
                     getArticles()
                 } else {
 
@@ -112,9 +93,6 @@ class AllArticlesFragment : Fragment() {
 
     private fun observer() {
         with(viewModel) {
-            getArticlesSuccess.observe(viewLifecycleOwner) {
-
-            }
             getArticlesError.observe(viewLifecycleOwner) {
                 isLoading = false
                 binding.progressBar.gone()

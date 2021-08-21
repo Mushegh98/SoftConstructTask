@@ -5,8 +5,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.softconstruct.domain.interactor.AllArticlesFragmentInteractor
 import com.softconstruct.domain.interactor.FavoriteArticlesInteractor
-import com.softconstruct.entity.responsemodel.ArticleDTO
-import com.softconstruct.entity.roommodel.FavoriteArticle
 import com.softconstruct.entity.uimodel.ArticleUI
 import com.softconstruct.task.base.viewmodel.BaseViewModel
 import com.softconstruct.task.base.viewmodel.SingleLiveEvent
@@ -20,8 +18,6 @@ class AllArticlesFragmentViewModel(
     private val favoriteArticlesInteractor: FavoriteArticlesInteractor
 ) : BaseViewModel() {
 
-    private val _getArticlesSuccess by lazy { SingleLiveEvent<Unit>() }
-    val getArticlesSuccess: LiveData<Unit> get() = _getArticlesSuccess
     private val _getArticlesError by lazy { SingleLiveEvent<String>() }
     val getArticlesError: LiveData<String> get() = _getArticlesError
 
@@ -33,11 +29,10 @@ class AllArticlesFragmentViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             when (val result = allArticlesFragmentInteractor.getArticles()) {
                 is com.softconstruct.entity.Result.Success -> withContext(Dispatchers.Main) {
-                    _getArticlesSuccess.value = result.data
+
                 }
                 is com.softconstruct.entity.Result.Error -> withContext(Dispatchers.Main) {
                     val errorMessage = result.errors.errorMessage
-                    val errorCode = result.errors.errorCode
                     _getArticlesError.value = errorMessage
                 }
             }
@@ -57,9 +52,4 @@ class AllArticlesFragmentViewModel(
         }
     }
 
-    fun deleteAllArticles() {
-        viewModelScope.launch(Dispatchers.IO) {
-            allArticlesFragmentInteractor.deleteAllArticles()
-        }
-    }
 }

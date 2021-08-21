@@ -13,5 +13,5 @@ val viewModelModule = module {
     viewModel { AllArticlesFragmentViewModel(get(), get()) }
     viewModel { FavoriteArticlesFragmentViewModel(get()) }
     viewModel { DetailsFragmentViewModel() }
-    viewModel { SplashFragmentViewModel() }
+    viewModel { SplashFragmentViewModel(get()) }
 }

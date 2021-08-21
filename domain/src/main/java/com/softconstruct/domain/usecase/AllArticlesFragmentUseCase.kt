@@ -17,11 +17,12 @@ internal class AllArticlesFragmentUseCase(private val allArticlesFragmentReposit
 
     override suspend fun getArticles(): com.softconstruct.entity.Result<Unit> {
         if (pageNumber > allPages) return com.softconstruct.entity.Result.Error(
-            GuardianTaskException(4567, "No found page")
+            GuardianTaskException(4567, "Page Not Found")
         )
         return when (val result = allArticlesFragmentRepository.getArticles(pageNumber)) {
             is com.softconstruct.entity.Result.Success -> {
                 pageNumber++
+                allPages = result.data?.response?.pages ?: 1
                 val favoriteArticlesIdFromDB = allArticlesFragmentRepository.getArticlesIdFromDB()
                 result.data?.response?.results?.map {
                     it.fromResponseToRoomModel(
